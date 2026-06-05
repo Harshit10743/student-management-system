@@ -1,4 +1,6 @@
 package com.example.lms.controller;
+import java.util.ArrayList;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +13,10 @@ import com.example.lms.model.Student;
 public class StudentController {
 
   @GetMapping
-  public Student getStudent() {
-    return new Student(1L, "John Doe", "Computer Science");
+  public ArrayList<Student> getStudent() {
+    ArrayList<Student> students = new ArrayList<>();
+    students.add(new Student(10743L, "Harshit", "Computer Science"));
+    students.add(new Student(10809L, "Vansh Gupta", "Computer Science"));
+    return students;
   }  
 }
