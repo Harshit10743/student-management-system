@@ -2,11 +2,24 @@ import { useState } from 'react';
 
 function App() {
     const [students, setStudents] = useState([]);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const getStudentData = async () => {
         const response = await fetch('http://localhost:8080/students');
         const data = await response.json();
         setStudents(data);
+    };
+
+    const login = async () => {
+        const response = await fetch('http://localhost:8080/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+        alert ("Login Successful");
     };
 
     return (
@@ -23,8 +36,24 @@ function App() {
                     </li>
                 ))}
             </ul>
-        </div>
-    );
+      <input
+        placeholder="Username"
+        onChange={(e)=>
+        setUsername(
+            e.target.value
+        )}/>
+
+      <input
+        placeholder="Password"
+        onChange={(e)=>
+        setPassword(
+            e.target.value
+        )}/>
+
+      <button onClick={login}>Login</button>
+    </div>
+  );
+       
 }
 
 export default App;

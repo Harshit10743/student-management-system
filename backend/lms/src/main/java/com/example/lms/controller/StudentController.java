@@ -86,7 +86,7 @@ public class StudentController {
             @RequestBody StudentRequestDTO dto) {
 
         Student updatedStudent = studentService.updateStudent(id, dto);
-
+        
         return ResponseEntity.ok(updatedStudent);
     }
 
